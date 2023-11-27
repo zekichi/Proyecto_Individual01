@@ -32,7 +32,7 @@ jupyter_client==8.0.0a1
 jupyter_core==5.0.0rc2
 keyring==24.1.1
 matplotlib-inline==0.1.6
-more-itertools==10.1.0
+more-itertools==9.1.0
 msgpack==1.0.7
 nest-asyncio==1.5.8
 numpy==1.26.2
