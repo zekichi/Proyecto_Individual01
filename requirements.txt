@@ -23,7 +23,7 @@ h11==0.14.0
 idna==3.5
 importlib-metadata==4.11.4
 installer==0.7.0
-ipykernel==6.26.0
+ipykernel==6.16.2
 ipython==8.18.0
 jaraco.classes==3.3.0
 jedi==0.19.1
