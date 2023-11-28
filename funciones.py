@@ -17,19 +17,18 @@ df = pd.read_parquet('./modelado.parquet')
 def PlaytimeGenre(genre: str):
     
     if not isinstance(genre, str):
-        return{'El parametro no es un valor del tipo cadena (str)'}
+        return{'El parámetro no es un valor del tipo cadena (str)'}
     
-    df_merge = pd.merge(steam_games, steam_items, left_on='item_id', right_on='item_id', how='inner')
+    df_genre = steam_games[steam_games['genres'] == genre]
 
-    if df_merge.empty:
-        return {'No existen parametros para devolver para dicho genero {}'.format(genre)}
-
-    mas_horas = df_merge.groupby('año')['playtime_forever'].sum()
     
+    if not df_genre.empty:
+        año_max_horas = int(df_genre.iloc[0]['año'])
+    else:
+        return {"No hay datos disponibles para el género {}".format(genre)}
 
-    mas_horas_max = mas_horas.idxmax()
+    return {"Año de lanzamiento con más horas jugadas para {}: {}".format(genre, int(año_max_horas))}
 
-    return {"Mas horas jugadas por año de lanzamiento {}: {}".format(genre, int(mas_horas_max))}
 
 
 #-------- funcion 2 --------
