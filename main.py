@@ -5,6 +5,7 @@ from funciones import UserForGenre
 from funciones import UsersRecommend
 from funciones import UserWorstDeveloper
 from funciones import sentiment_analysis
+from funciones import recomendacion_juego
 
 app = FastAPI()
 
@@ -23,7 +24,7 @@ async def user(genre : str):
     
 
 
-#-------- funcion 2 -------    
+#-------- funcion 1 -------    
 @app.get('/UserForGenre/{genre}')
 
 async def user(genre: str):
@@ -34,7 +35,7 @@ async def user(genre: str):
         return{'error': str(e)}
     
 
-#------ funcion 3 ------
+#------ funcion 2 ------
 @app.get('/UserRecommend/{año}')
 async def user(year: str):
     try:
@@ -45,7 +46,7 @@ async def user(year: str):
         return {'error': str(e)}
     
 
-#------ funcion 4 ------
+#------ funcion 3 ------
 @app.get('/UserWorstDeveloper/{año}')
 async def user(year: str):
     try:
@@ -54,11 +55,21 @@ async def user(year: str):
     except Exception as e:
         return {'error': str(e)}
     
-#------ funcion 5 ------
-@app.get("/sentiment_analysis/{developer}")
+#------ funcion 4 ------
+@app.get('/sentiment_analysis/{developer}')
 async def user(developer: str):
     try:
-        result = sentiment_analysis(developer)
-        return result
+        response = sentiment_analysis(developer)
+        return response
     except Exception as e:
         return {"error": str(e)}
+    
+
+#------ funcion 5 ------    
+@app.get('/recomendacion_juego/{id}')
+async def user (id: int):
+    try:
+        response = recomendacion_juego(id)
+        return response
+    except Exception as e :
+        return {'error': str(e)}

@@ -123,4 +123,14 @@ def sentiment_analysis(developer: str):
     return response
 
 #-------- funcion 5 --------
+def recomendacion_juego(id: int):
 
+    df = pd.read_parquet('recommend.parquet')
+    if id not in df['item_id'].values:
+        return 'El id ingresado es incorrecto'
+    response = df.loc[df['item_id'] == id, 'recommend']
+
+    if not response.empty:
+        return response.iloc[0].tolist()
+    else:
+        return 'No existen recomendaciones'
